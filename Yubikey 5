@@ -1,0 +1,8 @@
+Revisar el firmware de nuestra key
+lsusb -v 2>/dev/null | grep -A2 Yubico | grep "bcdDevice" | awk '{print $2}'
+
+Generar el par de claves para SSH con Yubikey 5
+ssh-keygen -t ed25519-sk -C "$(hostname)-$(date +'%d-%m-%Y')-yubikey"
+
+Comando para firmware inferior a 5.2.3 de Yubikey
+ssh-keygen -t ecdsa-sk -C "$(hostname)-$(date +'%d-%m-%Y')-yubikey"
